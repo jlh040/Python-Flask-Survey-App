@@ -26,6 +26,8 @@ def handle_question(question_num):
     """Display a form that asks the user a question, shows the choices and
     a submit button.
     """
+    correct_page_number = len(responses)
+    question_num = correct_page_number
 
     current_question_obj = questions[question_num]
     current_question = current_question_obj.question
