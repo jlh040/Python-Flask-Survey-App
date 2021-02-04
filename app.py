@@ -19,3 +19,18 @@ def show_start_page():
     title = satisfaction_survey.title
     instructions = satisfaction_survey.instructions
     return render_template('home.html', title = title, instructions = instructions)
+
+@app.route('/questions/<int:question_num>')
+def handle_question(question_num):
+    """Display a form that asks the user a question, shows the choices and
+    a submit button.
+    """
+
+    questions = satisfaction_survey.questions
+    current_question_obj = questions[question_num]
+    current_question = current_question_obj.question
+    choices = current_question_obj.choices
+
+
+    return render_template('question-page.html', question_num = question_num,
+    current_question = current_question, choices = choices)

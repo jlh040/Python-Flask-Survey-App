@@ -8,13 +8,15 @@
 </head>
 <body>
     {% if instructions %}
-    <section>
+    <section class="start-section">
         <h1>{% block title2 %}{% endblock %}</h1>
         <h3>{% block instructions %}{% endblock %}</h3>
         <button><a href="/questions/0">Start Survey</a></button>
     </section>
     {% else %}
-    <section>
+    <section class="question-section">
+        {% block content %}
+        {% endblock %}
     </section>
     {% endif %}
     

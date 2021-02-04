@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Question {{ question_num }}
+{% endblock %}
+
+{% block content %}
+<form action="" method="GET">
+    <h1>{{ current_question }}</h1>
+    {% for choice in choices %}
+    <div>
+        <input type="radio" name="radio-question" id="{{ choice }}">
+        <label for="{{ choice }}"><b>{{ choice }}</b></label>
+    </div>
+    {% endfor %}
+    <button><a href="">Submit</a></button>
+</form>
+
+{% endblock %}
