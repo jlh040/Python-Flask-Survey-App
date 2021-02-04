@@ -29,9 +29,10 @@ def handle_question(question_num):
     correct_page_number = len(responses)
 
     if len(responses) == len(questions):
-        return render_template('thanks.html')
+        return redirect('/thank_you_page')
     elif question_num != correct_page_number:
         question_num = correct_page_number
+        flash('Answer the correct question please!', 'error')
     
     current_question_obj = questions[question_num]
     current_question = current_question_obj.question

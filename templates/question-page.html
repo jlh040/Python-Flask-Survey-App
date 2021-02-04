@@ -15,5 +15,11 @@
     {% endfor %}
     <button type="submit">Submit</button>
 </form>
-
+{% with messages = get_flashed_messages(with_categories=True) %}
+{% if messages %}
+    {% for category, msg in messages %}
+        <h1 class="{{ category }}">Invalid Question!!! Please answer the current question.</h1>
+    {% endfor %}
+{% endif %}
+{% endwith %}
 {% endblock %}
