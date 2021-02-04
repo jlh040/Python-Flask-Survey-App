@@ -27,7 +27,8 @@ def handle_question(question_num):
     a submit button.
     """
     correct_page_number = len(responses)
-    question_num = correct_page_number
+    if question_num != correct_page_number:
+        question_num = correct_page_number
 
     current_question_obj = questions[question_num]
     current_question = current_question_obj.question
