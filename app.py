@@ -9,6 +9,7 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
 
 responses = []
+questions = satisfaction_survey.questions
 
 @app.route('/')
 def show_start_page():
@@ -26,7 +27,6 @@ def handle_question(question_num):
     a submit button.
     """
 
-    questions = satisfaction_survey.questions
     current_question_obj = questions[question_num]
     current_question = current_question_obj.question
     choices = current_question_obj.choices
@@ -43,4 +43,12 @@ def send_answer():
     answer = request.form['radio-question']
     responses.append(answer)
     page_number = len(responses)
-    return redirect(f'/questions/{page_number}')
+    
+    if page_number == len(questions):
+        return redirect('/thank_you_page')
+    else:
+        return redirect(f'/questions/{page_number}')
+
+@app.route('/thank_you_page')
+def show_thanks():
+    return render_template('thanks.html')
