@@ -23,8 +23,8 @@ def show_start_page():
 
 @app.route('/questions/<int:question_num>')
 def handle_question(question_num):
-    """Display a form that asks the user a question, shows the choices and
-    a submit button.
+    """Display a form that asks the user a question, and also shows the 
+    user their choices and a submit button.
     """
     correct_page_number = len(responses)
 
@@ -58,4 +58,6 @@ def send_answer():
 
 @app.route('/thank_you_page')
 def show_thanks():
+    """Show the user a thank you page"""
+    
     return render_template('thanks.html')
