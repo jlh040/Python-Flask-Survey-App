@@ -27,9 +27,12 @@ def handle_question(question_num):
     a submit button.
     """
     correct_page_number = len(responses)
-    if question_num != correct_page_number:
-        question_num = correct_page_number
 
+    if len(responses) == len(questions):
+        return render_template('thanks.html')
+    elif question_num != correct_page_number:
+        question_num = correct_page_number
+    
     current_question_obj = questions[question_num]
     current_question = current_question_obj.question
     choices = current_question_obj.choices
