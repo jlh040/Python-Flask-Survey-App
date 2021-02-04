@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     {% if instructions %}
     <section>
         <h1>{% block title2 %}{% endblock %}</h1>
         <h3>{% block instructions %}{% endblock %}</h3>
-        <button>Start Survey</button>
+        <button><a href="/questions/0">Start Survey</a></button>
     </section>
     {% else %}
     <section>
