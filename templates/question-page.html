@@ -5,15 +5,15 @@
 {% endblock %}
 
 {% block content %}
-<form action="" method="GET">
+<form action="/answer" method="POST">
     <h1>{{ current_question }}</h1>
     {% for choice in choices %}
     <div>
-        <input type="radio" name="radio-question" id="{{ choice }}">
+        <input type="radio" name="radio-question" id="{{ choice }}" value="{{ choice }}">
         <label for="{{ choice }}"><b>{{ choice }}</b></label>
     </div>
     {% endfor %}
-    <button><a href="">Submit</a></button>
+    <button type="submit">Submit</button>
 </form>
 
 {% endblock %}

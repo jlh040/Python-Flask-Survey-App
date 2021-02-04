@@ -3,6 +3,10 @@ button a {
     color: white
 }
 
+button {
+    color: white;
+}
+
 .start-section button {
     width: 80px;
     height: 40px;

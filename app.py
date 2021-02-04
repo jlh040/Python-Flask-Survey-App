@@ -31,6 +31,16 @@ def handle_question(question_num):
     current_question = current_question_obj.question
     choices = current_question_obj.choices
 
-
     return render_template('question-page.html', question_num = question_num,
     current_question = current_question, choices = choices)
+
+@app.route('/answer', methods=['POST'])
+def send_answer():
+    """Append the answer to the responses list, and then
+    redirect the user to the next page.
+    """
+
+    answer = request.form['radio-question']
+    responses.append(answer)
+    page_number = len(responses)
+    return redirect(f'/questions/{page_number}')
