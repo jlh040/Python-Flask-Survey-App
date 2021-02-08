@@ -8,7 +8,6 @@ app.config['SECRET_KEY'] = '0c2b6x'
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
 
-responses = []
 questions = satisfaction_survey.questions
 
 @app.route('/')
@@ -16,19 +15,25 @@ def show_start_page():
     """Display the title and instructions of the survey,
     and a button to start the survey.
     """
-
     title = satisfaction_survey.title
     instructions = satisfaction_survey.instructions
     return render_template('home.html', title = title, instructions = instructions)
+
+@app.route('/set-session', methods=["POST"])
+def set_session():
+    """Store an empty list in the session and send it as a cookie to the user"""
+    session['responses'] = []
+    return redirect('/questions/0')
+
 
 @app.route('/questions/<int:question_num>')
 def handle_question(question_num):
     """Display a form that asks the user a question, and also shows the 
     user their choices and a submit button.
     """
-    correct_page_number = len(responses)
-
-    if len(responses) == len(questions):
+    correct_page_number = len(session['responses'])
+    
+    if len(session['responses']) == len(questions):
         return redirect('/thank_you_page')
     elif question_num != correct_page_number:
         question_num = correct_page_number
@@ -43,13 +48,15 @@ def handle_question(question_num):
 
 @app.route('/answer', methods=['POST'])
 def send_answer():
-    """Append the answer to the responses list, and then
+    """Append the answer to the session, and then
     redirect the user to the next page.
     """
-
     answer = request.form['radio-question']
+    responses = session['responses']
     responses.append(answer)
-    page_number = len(responses)
+    session['responses'] = responses
+
+    page_number = len(session['responses'])
     
     if page_number == len(questions):
         return redirect('/thank_you_page')

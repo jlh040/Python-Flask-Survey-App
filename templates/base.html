@@ -11,7 +11,9 @@
     <section class="start-section">
         <h1>{% block title2 %}{% endblock %}</h1>
         <h3>{% block instructions %}{% endblock %}</h3>
-        <button><a href="/questions/0">Start Survey</a></button>
+        <form action="/set-session" method="POST">
+            <button>Start Survey</button>
+        </form>
     </section>
     {% else %}
     <section class="question-section">
