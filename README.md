@@ -1,2 +1,2 @@
-- ### This is a simple survey application where I rely on Flask, and also make use of template inheritance via Jinja.
+- ### This is a simple survey application where I rely on Flask, and also make use of template inheritance via Jinja. (Update: Answers to the survey are now stored in Flask's session and sent to the user as a cookie. This fixes many problems.
   - #### (To-do: Include more comments, and add more CSS.)
